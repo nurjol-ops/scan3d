@@ -1,0 +1,21 @@
+# Blueprint для Render: New -> Blueprint -> выберите этот репозиторий.
+services:
+  - type: web
+    name: scan3d-server
+    runtime: docker
+    dockerfilePath: ./server/Dockerfile
+    dockerContext: ./server
+    # 1 CPU / 2 GB. На бесплатном плане (0.1 CPU, 512 MB) фотограмметрия
+    # идёт десятки минут и часто не помещается в память.
+    plan: standard
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: API_KEY
+        generateValue: true
+      - key: COLMAP_THREADS
+        value: "1"
+      - key: OMP_NUM_THREADS
+        value: "1"
+      - key: JOB_TTL_HOURS
+        value: "24"

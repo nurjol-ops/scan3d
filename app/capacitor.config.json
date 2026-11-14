@@ -1,0 +1,11 @@
+{
+  "appId": "app.scan3d.mobile",
+  "appName": "Scan3D",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": true
+  }
+}
